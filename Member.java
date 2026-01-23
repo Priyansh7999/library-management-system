@@ -6,4 +6,11 @@ public class Member {
         this.memberId = memberId;
         this.name = name;
     }  
+    //getter for attributes
+    public String getMemberId() {
+        return memberId;
+    }   
+    public String getName() {
+        return name;
+    }
 }
