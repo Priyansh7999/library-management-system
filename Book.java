@@ -34,4 +34,12 @@ public class Book {
         }
     }
 
+    public boolean isAvailable() {
+        return availableCopies > 0;
+    }
+
+    // to display particular book info
+    public String displayInfo() {
+        return title + " | Available: " + availableCopies + "/" + totalCopies;
+    }
 }
