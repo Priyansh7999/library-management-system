@@ -3,6 +3,7 @@ import java.util.*;
 public class Library {
 
     private List<Book> books = new ArrayList<>();
+    private Map<String, String> borrowedBooks = new HashMap<>();
     
     public void addBook(String title, int copies) {
         books.add(new Book(title, copies));
@@ -17,5 +18,35 @@ public class Library {
         for (Book book : books) {
             System.out.println(book.displayInfo());
         }
+    }
+
+    public boolean borrowBook(String title, Student student) {
+        for (Book book : books) {
+            if (book.getTitle().equals(title) && book.isAvailable()) {
+                if (borrowedBooks.containsKey(title)) {
+                    return false;
+                }
+
+                book.borrowCopy();
+                borrowedBooks.put(title, student.getName());
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean returnBook(String title, Student student) {
+        if (!borrowedBooks.containsKey(title)) {
+            return false;
+        }
+
+        for (Book book : books) {
+            if (book.getTitle().equalsIgnoreCase(title)) {
+                book.returnCopy();
+                borrowedBooks.remove(title);
+                return true;
+            }
+        }
+        return false;
     }
 }
