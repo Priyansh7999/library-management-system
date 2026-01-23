@@ -16,7 +16,7 @@ public class Main {
 
             System.out.println("4. to return book");
             System.out.println("5. exit");
-            
+
             System.out.print("Enter your choice(in numbers from 1 to 5): ");
 
             int choice = scanner.nextInt();
@@ -25,6 +25,19 @@ public class Main {
                 case 1: // to display books
                     library.displayBooks();
                     break;
+
+                case 2: //Add book Feature
+                    System.out.print("Enter book title: ");
+                    String title = scanner.nextLine();
+
+                    System.out.print("Enter number of copies: ");
+                    int copies = scanner.nextInt();
+                    scanner.nextLine();
+
+                    library.addBook(title, copies);
+                    System.out.println("Book added successfully.");
+                    break;
+
             }
             return;
         }
