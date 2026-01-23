@@ -10,7 +10,7 @@ public class Book {
         this.availableCopies = copies;
     }
 
-    public String getBookId(){
+    public String getBookId() {
         return bookId;
     }
 
@@ -21,4 +21,17 @@ public class Book {
     public int getAvailableCopies() {
         return availableCopies;
     }
+
+    public void borrowCopy() {
+        if (availableCopies > 0) {
+            availableCopies--;
+        }
+    }
+
+    public void returnCopy() {
+        if (availableCopies < totalCopies) {
+            availableCopies++;
+        }
+    }
+
 }
