@@ -34,4 +34,19 @@ public class Library {
         }
         return false;
     }
+
+    public boolean returnBook(String title, Student student) {
+        if (!borrowedBooks.containsKey(title)) {
+            return false;
+        }
+
+        for (Book book : books) {
+            if (book.getTitle().equalsIgnoreCase(title)) {
+                book.returnCopy();
+                borrowedBooks.remove(title);
+                return true;
+            }
+        }
+        return false;
+    }
 }
