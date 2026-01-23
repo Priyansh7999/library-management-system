@@ -33,3 +33,22 @@ A simple command-line based Library Management System for managing books and stu
   - Book name
   - Student name
 - Increases available copies when a book is returned
+
+## Class Overview
+
+### Book
+- Represents a book title, id
+- Tracks total and available copies
+
+### Member
+- Base class for library members
+- Contains common attributes like `memberId` and `name`
+
+### Student
+- Extends `Member`
+- Represents a student library member
+
+### Library
+- Handles all business logic
+- Manages books and borrowing/returning operations
+
