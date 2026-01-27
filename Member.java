@@ -4,8 +4,8 @@ public abstract class Member {
     private String type;
     private String mobileNumber;
 
-    public Member(String id, String name, String type, String mobileNumber) {
-        this.id = id;
+    public Member(String name, String type, String mobileNumber) {
+        this.id = "M" + System.currentTimeMillis(); // Simple unique ID generation
         this.name = name;
         this.type = type;
         this.mobileNumber = mobileNumber;
