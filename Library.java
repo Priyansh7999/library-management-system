@@ -3,7 +3,11 @@ import java.util.*;
 public class Library {
 
     private Map<String, List<String>> availableBooksByTitle = new HashMap<>();
-    private List<Book> books = new ArrayList<>();
+    private Map<String, String> borrowedBooks = new HashMap<>();
+    
+    public void addBook(String title, int copies) {
+        books.add(new Book(title, copies));
+    }
 
     public void addBook(String id, String title, String availableCopies) {
         // validation - does book with same name already exist
@@ -28,6 +32,40 @@ public class Library {
         if (availableBooksByTitle.isEmpty()) {
             System.out.println("No books in the library.");
             return;
+        }
+    }
+  
+    public void borrowBook(String title, Student student) {
+
+    if (!availableBooksByTitle.containsKey(title)) {
+        System.out.println("Book with this title does not exist.");
+        return;
+    }
+
+    List<String> availableCopyIds = availableBooksByTitle.get(title);
+
+    if (availableCopyIds.isEmpty()) {
+        System.out.println("No available copies for this book.");
+        return;
+    }
+
+    String issuedBookId = availableCopyIds.remove(0);
+
+    // bookId will be mapped to memberId
+    borrowedBooks.put(issuedBookId, student.getId());
+
+    System.out.println(
+        "Book borrowed successfully | " +
+        "Title: " + title +
+        " | Book ID: " + issuedBookId +
+        " | Member ID: " + student.getId()
+    );
+}
+
+
+    public boolean returnBook(String title, Student student) {
+        if (!borrowedBooks.containsKey(title)) {
+            return false;
         }
     }
 
