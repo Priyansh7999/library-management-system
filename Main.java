@@ -36,8 +36,42 @@ public class Main {
                     library.addBook(id, title, copies);
                     System.out.println("Book added successfully.");
                     break;
+                 case 3: // to borrow book
+                    
+                    System.out.print("Enter student name: ");
+                    String studentName = scanner.nextLine();
+                    System.out.print("Enter student Mobile: ");
+                    String studentMobile = scanner.nextLine();
+                    Student student = new Student(studentName, studentMobile);
 
-                case 3: 
+                    System.out.print("Enter book title: ");
+                    String borrowTitle = scanner.nextLine();
+
+                    library.borrowBook(borrowTitle, student);
+                    break;
+
+                case 4: // to return book
+                    System.out.print("Enter student ID: ");
+                    String returnId = scanner.nextLine();
+
+                    System.out.print("Enter student name: ");
+                    String returnName = scanner.nextLine();
+
+                    Student returnStudent = new Student(returnId, returnName);
+
+                    System.out.print("Enter book title: ");
+                    String returnTitle = scanner.nextLine();
+
+                    if (library.returnBook(returnTitle, returnStudent)) {
+                        System.out.println("Book returned successfully.");
+                    } else {
+                        System.out.println("Invalid return request.");
+                    }
+                    break;
+
+                case 5: 
+                    break;
+                case 6:
                     System.out.println("Exiting system. Goodbye!");
                     scanner.close();
                     return;
