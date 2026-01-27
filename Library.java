@@ -36,7 +36,7 @@ public class Library {
 
     String issuedBookId = availableCopyIds.remove(0);
 
-    // bookId -> memberId
+    // bookId will be mapped to memberId
     borrowedBooks.put(issuedBookId, member.getId());
 
     System.out.println(
