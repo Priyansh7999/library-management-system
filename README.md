@@ -34,21 +34,18 @@ A simple command-line based Library Management System for managing books and stu
   - Student name
 - Increases available copies when a book is returned
 
-## Class Overview
+## How to Run the CLI Application
 
-### Book
-- Represents a book title, id
-- Tracks total and available copies
+1. Make sure Java (JDK) is installed.
 
-### Member
-- Base class for library members
-- Contains common attributes like `memberId` and `name`
+2. Clone the project and go to the folder:
+   git clone https://github.com/Priyansh7999/library-management-system.git
+   cd library-management-system
 
-### Student
-- Extends `Member`
-- Represents a student library member
+3. Compile the program:
+   javac *.java
 
-### Library
-- Handles all business logic
-- Manages books and borrowing/returning operations
+4. Run the program:
+   java Main
 
+Note: Data is not saved after the program ends.
