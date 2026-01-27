@@ -12,12 +12,9 @@ public class Main {
 
             System.out.println("1. list books");
             System.out.println("2. add book");
-            System.out.println("3. to borrow book");
+            System.out.println("3. exit");
 
-            System.out.println("4. to return book");
-            System.out.println("5. exit");
-
-            System.out.print("Enter your choice(in numbers from 1 to 5): ");
+            System.out.print("Enter your choice(in numbers from 1 to 3): ");
 
             int choice = scanner.nextInt();
             scanner.nextLine();
@@ -27,14 +24,16 @@ public class Main {
                     break;
 
                 case 2: //Add book Feature
+                    System.out.print("Enter book ID: ");
+                    String id = scanner.nextLine();
+
                     System.out.print("Enter book title: ");
                     String title = scanner.nextLine();
 
                     System.out.print("Enter number of copies: ");
-                    int copies = scanner.nextInt();
-                    scanner.nextLine();
+                    String copies = scanner.nextLine();
 
-                    library.addBook(title, copies);
+                    library.addBook(id, title, copies);
                     System.out.println("Book added successfully.");
                     break;
                  case 3: // to borrow book
