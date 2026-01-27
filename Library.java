@@ -20,7 +20,7 @@ public class Library {
         }
     }
 
-    public void borrowBook(String title, Member member) {
+    public void borrowBook(String title, Student student) {
 
     if (!availableBooksByTitle.containsKey(title)) {
         System.out.println("Book with this title does not exist.");
@@ -37,13 +37,13 @@ public class Library {
     String issuedBookId = availableCopyIds.remove(0);
 
     // bookId will be mapped to memberId
-    borrowedBooks.put(issuedBookId, member.getId());
+    borrowedBooks.put(issuedBookId, student.getId());
 
     System.out.println(
         "Book borrowed successfully | " +
         "Title: " + title +
         " | Book ID: " + issuedBookId +
-        " | Member ID: " + member.getId()
+        " | Member ID: " + student.getId()
     );
 }
 
