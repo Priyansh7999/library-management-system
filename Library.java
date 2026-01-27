@@ -20,20 +20,33 @@ public class Library {
         }
     }
 
-    public boolean borrowBook(String title, Student student) {
-        for (Book book : books) {
-            if (book.getTitle().equals(title) && book.isAvailable()) {
-                if (borrowedBooks.containsKey(title)) {
-                    return false;
-                }
+    public void borrowBook(String title, Member member) {
 
-                book.borrowCopy();
-                borrowedBooks.put(title, student.getName());
-                return true;
-            }
-        }
-        return false;
+    if (!availableBooksByTitle.containsKey(title)) {
+        System.out.println("Book with this title does not exist.");
+        return;
     }
+
+    List<String> availableCopyIds = availableBooksByTitle.get(title);
+
+    if (availableCopyIds.isEmpty()) {
+        System.out.println("No available copies for this book.");
+        return;
+    }
+
+    String issuedBookId = availableCopyIds.remove(0);
+
+    // bookId -> memberId
+    borrowedBooks.put(issuedBookId, member.getId());
+
+    System.out.println(
+        "Book borrowed successfully | " +
+        "Title: " + title +
+        " | Book ID: " + issuedBookId +
+        " | Member ID: " + member.getId()
+    );
+}
+
 
     public boolean returnBook(String title, Student student) {
         if (!borrowedBooks.containsKey(title)) {
