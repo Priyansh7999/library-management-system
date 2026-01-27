@@ -1,16 +1,27 @@
-public class Member {
-    protected String memberId;  //<-- Unique identifier for the member (any string)
-    protected String name;      //<-- Names of the member (full name)
+public abstract class Member {
+    private final String id;
+    private String name;
+    private String type;
+    private String mobileNumber;
 
-    public Member(String memberId, String name) { //<-- Constructor
-        this.memberId = memberId;
+    public Member(String name, String type, String mobileNumber) {
+        this.id = "M" + System.currentTimeMillis(); 
         this.name = name;
-    }  
-    //getter for attributes
-    public String getMemberId() {
-        return memberId;
-    }   
-    public String getName() {
-        return name;
+        this.type = type;
+        this.mobileNumber = mobileNumber;
+    }
+
+    public String getId() { 
+        return id; 
+    }
+    public String getName() { 
+        return name; 
+    }
+    public String getMobileNumber() { 
+        return mobileNumber; 
+    }
+
+    public String memberDetails() {
+        return "Member ID: " + id + ", Name: " + name + ", Type: " + type + ", Mobile: " + mobileNumber;
     }
 }
