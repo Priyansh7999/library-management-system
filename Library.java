@@ -2,7 +2,7 @@ import java.util.*;
 
 public class Library {
 
-    private List<Book> books = new ArrayList<>();
+    private Map<String, List<String>> availableBooksByTitle = new HashMap<>();
     private Map<String, String> borrowedBooks = new HashMap<>();
     
     public void addBook(String title, int copies) {
