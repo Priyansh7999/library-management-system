@@ -49,11 +49,7 @@ public class Main {
                     System.out.print("Enter book title: ");
                     String borrowTitle = scanner.nextLine();
 
-                    if (library.borrowBook(borrowTitle, student)) {
-                        System.out.println("Book borrowed successfully.");
-                    } else {
-                        System.out.println("Book not available or already borrowed.");
-                    }
+                    library.borrowBook(borrowTitle, student);
                     break;
 
                 case 4: // to return book
