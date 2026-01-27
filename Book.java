@@ -2,7 +2,7 @@ public class Book {
     private String bookId;
     private String title;
 
-    public Book(String title, int copies) {
+    public Book(String title) {
         this.title = title;
     }
 

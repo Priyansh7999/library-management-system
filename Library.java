@@ -2,11 +2,16 @@ import java.util.*;
 
 public class Library {
 
-    private List<Book> books = new ArrayList<>();
-    private Map<String, String> borrowedBooks = new HashMap<>();
+    private Map<String, List<String>> books = new HashMap<>();
     
-    public void addBook(String title, int copies) {
-        books.add(new Book(title, copies));
+    public void addBook(String title) {
+        // Add refined addBook logic
+
+        // validation - does book with same name already exist
+
+        // generate a simple key value pair such as {"Book Title": ["Id 1", "Id 2"]}
+
+        // Add the book map to the hashmap of books.
     }
 
     public void displayBooks() {
@@ -14,39 +19,5 @@ public class Library {
             System.out.println("No books in the library.");
             return;
         }
-
-        for (Book book : books) {
-            System.out.println(book.displayInfo());
-        }
-    }
-
-    public boolean borrowBook(String title, Student student) {
-        for (Book book : books) {
-            if (book.getTitle().equals(title) && book.isAvailable()) {
-                if (borrowedBooks.containsKey(title)) {
-                    return false;
-                }
-
-                book.borrowCopy();
-                borrowedBooks.put(title, student.getName());
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public boolean returnBook(String title, Student student) {
-        if (!borrowedBooks.containsKey(title)) {
-            return false;
-        }
-
-        for (Book book : books) {
-            if (book.getTitle().equalsIgnoreCase(title)) {
-                book.returnCopy();
-                borrowedBooks.remove(title);
-                return true;
-            }
-        }
-        return false;
     }
 }
