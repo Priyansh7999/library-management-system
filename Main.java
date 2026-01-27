@@ -76,6 +76,8 @@ public class Main {
                     break;
 
                 case 5: 
+                    break;
+                case 6:
                     System.out.println("Exiting system. Goodbye!");
                     scanner.close();
                     return;

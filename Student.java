@@ -1,6 +1,6 @@
 public class Student extends Member{
 
-    public Student(String memberId, String name, String mobileNumber) {
-        super(memberId, name, "Student", mobileNumber);
+    public Student(String name, String mobileNumber) {
+        super(name, "Student", mobileNumber);
     }
 }
