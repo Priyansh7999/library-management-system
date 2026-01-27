@@ -1,23 +1,22 @@
 public abstract class Member {
-    private final String memberId;
+    private final String id;
     private String name;
+    private String type;
 
-    public Member(String memberId, String name) {
-        this.memberId = memberId;
+    public Member(String id, String name, String type) {
+        this.id = id;
         this.name = name;
+        this.type = type;
     }
 
-    public String getMemberId() { 
-        return memberId; 
+    public String getId() { 
+        return id; 
     }
     public String getName() { 
         return name; 
     }
-    public void setName(String name) { 
-        this.name = name; 
-    }
 
     public String memberDetails() {
-        return "Member ID: " + memberId + ", Name: " + name;
+        return "Member ID: " + id + ", Name: " + name + ", Type: " + type;
     }
 }
