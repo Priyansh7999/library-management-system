@@ -1,13 +1,14 @@
 public class Book {
-    private String bookId;
+    private String id;
     private String title;
 
-    public Book(String title) {
+    public Book(String id, String title) {
+        this.id = id;
         this.title = title;
     }
 
     public String getBookId() {
-        return bookId;
+        return id;
     }
 
     public String getTitle() {
