@@ -3,11 +3,10 @@ import java.util.*;
 public class Library {
 
     private Map<String, List<String>> availableBooksByTitle = new HashMap<>();
-    
-    public void addBook(String id, String title, String availableCopies) {
-        // Add refined addBook logic
+    private List<Book> books = new ArrayList<>();
 
-        // validation - does book with same name already exist]
+    public void addBook(String id, String title, String availableCopies) {
+        // validation - does book with same name already exist
         if (hasBookWithTitle(title)) {
             System.out.println("The book with this title already exists");
             return;
@@ -15,11 +14,10 @@ public class Library {
 
         // Create new book object
         Book book = new Book(id, title);
+        books.add(book);
 
         // generate a simple key value pair such as {"Book Title": ["Id 1", "Id 2"]}
         generateBookCopyIds(title, availableCopies);
-
-        // Add the book map to the hashmap of books.
     }
 
     public boolean hasBookWithTitle(String title) {
