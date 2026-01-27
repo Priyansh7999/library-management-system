@@ -9,17 +9,32 @@ public class Library {
         books.add(new Book(title, copies));
     }
 
-    public void displayBooks() {
-        if (books.isEmpty()) {
-            System.out.println("No books in the library.");
+    public void addBook(String id, String title, String availableCopies) {
+        // validation - does book with same name already exist
+        if (hasBookWithTitle(title)) {
+            System.out.println("The book with this title already exists");
             return;
         }
 
-        for (Book book : books) {
-            System.out.println(book.displayInfo());
-        }
+        // Create new book object
+        Book book = new Book(id, title);
+        books.add(book);
+
+        // generate a simple key value pair such as {"Book Title": ["Id 1", "Id 2"]}
+        generateBookCopyIds(title, availableCopies);
     }
 
+    public boolean hasBookWithTitle(String title) {
+        return availableBooksByTitle.containsKey(title);
+    }
+
+    public void displayBooks() {
+        if (availableBooksByTitle.isEmpty()) {
+            System.out.println("No books in the library.");
+            return;
+        }
+    }
+  
     public void borrowBook(String title, Student student) {
 
     if (!availableBooksByTitle.containsKey(title)) {
@@ -52,14 +67,17 @@ public class Library {
         if (!borrowedBooks.containsKey(title)) {
             return false;
         }
+    }
 
-        for (Book book : books) {
-            if (book.getTitle().equalsIgnoreCase(title)) {
-                book.returnCopy();
-                borrowedBooks.remove(title);
-                return true;
-            }
+    public void generateBookCopyIds(String title, String availableCopies) {
+        int copies = Integer.parseInt(availableCopies);
+
+        List<String> copyId = new ArrayList<>();
+        
+        for (int i=1; i<=copies; i++){
+            copyId.add(title + String.valueOf(i));
         }
-        return false;
+
+        availableBooksByTitle.put(title, copyId);
     }
 }
