@@ -37,13 +37,12 @@ public class Main {
                     System.out.println("Book added successfully.");
                     break;
                  case 3: // to borrow book
-                    System.out.print("Enter student ID: ");
-                    String studentId = scanner.nextLine();
-
+                    
                     System.out.print("Enter student name: ");
                     String studentName = scanner.nextLine();
-
-                    Student student = new Student(studentId, studentName);
+                    System.out.print("Enter student Mobile: ");
+                    String studentMobile = scanner.nextLine();
+                    Student student = new Student(studentName, studentMobile);
 
                     System.out.print("Enter book title: ");
                     String borrowTitle = scanner.nextLine();
