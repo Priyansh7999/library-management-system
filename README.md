@@ -39,8 +39,8 @@ A simple command-line based Library Management System for managing books and stu
 1. Make sure Java (JDK) is installed.
 
 2. Clone the project and go to the folder:
-   git clone <repository-url>
-   cd <project-folder>
+   git clone [<repository-url>](https://github.com/Priyansh7999/library-management-system.git)
+   cd library-management-system
 
 3. Compile the program:
    javac *.java
