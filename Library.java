@@ -4,19 +4,74 @@ public class Library {
     
     Scanner scanner = new Scanner(System.in);
 
-    private int totalAvailableBooks = 0;
+    private int bookIdCounter = 0;
     private List<Book> availableBooks = new ArrayList<>();
+    private List<Student> students = new ArrayList<>();
+    private Map<String, List<Book>> borrowedBooksByStudentID = new HashMap<>();
+
 
     public void addBook(String title, String author, String availableCopies) {
         int copies = Integer.parseInt(availableCopies);
 
         for (int i = 1; i <= copies; i++) {
-            totalAvailableBooks++;
-            String bookId = title.toLowerCase() + totalAvailableBooks;
+            bookIdCounter++;
+            String bookId = title.toLowerCase() + bookIdCounter;
             Book book = new Book(bookId, title.toLowerCase(), author.toLowerCase());
             availableBooks.add(book);
         }
     }
+    public boolean isBookAvailable(String title) {
+    for (Book book : availableBooks) {
+        if (book.getTitle().equalsIgnoreCase(title)) {
+            return true;
+        }
+    }
+    return false;
+}
+    public Student findStudentByMobile(String mobile) {
+    for (Student student : students) {
+        if (student.getMobileNumber().equals(mobile)) {
+            return student;
+        }
+    }
+    return null;
+}
+    public void addStudent(Student student) {
+        students.add(student);
+    }
+    public void borrowBook(String bookName, Student student) {
+    int firstIndex = -1;
+    for (int i = 0; i < availableBooks.size(); i++) {
+        if (availableBooks.get(i).getTitle().equalsIgnoreCase(bookName)) {
+            firstIndex = i;
+            break;
+        }
+    }
+    if (firstIndex == -1) {
+        System.out.println("Book not available: " + bookName);
+        return;
+    }
+
+    Book borrowedBook = availableBooks.remove(firstIndex);
+
+    borrowedBooksByStudentID
+            .computeIfAbsent(student.getId(), id -> new ArrayList<>())
+            .add(borrowedBook);
+
+    System.out.println(
+            "Book borrowed successfully | " +
+            "Title: " + borrowedBook.getTitle() +
+            " | Book ID: " + borrowedBook.getBookId() +
+            " | Student ID: " + student.getId()
+    );
+}
+
+
+
+
+
+
+
 
     public void displayBooks() {
         for (Book book : availableBooks) {
@@ -27,18 +82,7 @@ public class Library {
     }
 
     public void returnBook(String studMobileNumber){
-        // Logic for returning book
-        Map<String, List<Book>> borrowedBooksByStudentID = new HashMap<>();
         
-        // Dummy record
-        borrowedBooksByStudentID.put(
-            "STUD1",
-            new ArrayList<>(List.of(
-                new Book("1", "Harry potter", "JK Rowling"),
-                new Book("1", "Harry potter", "JK Rowling")
-            ))
-        );
-
         // verify if student member has borrowed any book -> hasUserBorrowedBook()
         if(!hasUserBorrowedBook(studMobileNumber, borrowedBooksByStudentID)){
             System.out.print("This student member has not borrowed any book.");
