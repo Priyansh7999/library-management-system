@@ -14,7 +14,7 @@ public class Library {
 
         for (int i = 1; i <= copies; i++) {
             totalAvailableBooks++;
-            String bookId = title + totalAvailableBooks;
+            String bookId = title.toLowerCase() + totalAvailableBooks;
             Book book = new Book(bookId, title.toLowerCase(), author.toLowerCase());
             availableBooks.add(book);
         }
