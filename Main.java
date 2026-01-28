@@ -1,3 +1,6 @@
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 public class Main {
@@ -12,9 +15,10 @@ public class Main {
 
             System.out.println("1. List books");
             System.out.println("2. Add book");
-            System.out.println("3. Borrow book");
+            System.out.println("3. exit"); // Needs to be updated for borrow
+            System.out.println("4. Return book");
 
-            System.out.print("Enter your choice(in numbers from 1 to 3): ");
+            System.out.print("Enter your choice(in numbers from 1 to 4): ");
 
             int choice = scanner.nextInt();
             scanner.nextLine();
@@ -37,10 +41,26 @@ public class Main {
 
                     System.out.println("Book added successfully.");
                     break;
+
                 case 3:
                     System.out.println("Exiting system. Goodbye!");
                     scanner.close();
                     return;
+
+                case 4: // to return book
+                    Map<String, List<Book>> borrowedBooks = new HashMap<>();
+                    System.out.print("Enter Student Mobile Number: ");
+                    String studMobileNumber = scanner.nextLine();
+
+                    if(!library.hasUserBorrowedBook()){
+                        System.out.print("This student member has not borrowed any book.");
+                    } else {
+                        // Output: “Choose a book. Enter your choice:” (Iterate borrowedBooks and print Book.name)
+                        // Input: choice number
+                        // returnBook()
+                    }
+
+                    break;
 
                 default:
                     System.out.println("Invalid choice. Try again.");

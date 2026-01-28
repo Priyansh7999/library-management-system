@@ -23,4 +23,21 @@ public class Library {
             );
         }
     }
+
+    public void returnBook(){
+        // Logic for returning book
+        
+        // verify if student member has borrowed any book -> hasUserBorrowedBook()
+
+        // Remove book from Borrowed books -> removeBorrowedBook()
+        // Add book in available books -> addBookInAvailableBooks()
+
+        // Print message "Book returned successfully"
+    }
+
+    public boolean hasUserBorrowedBook(){
+        // Logic to check if Student has borrowed book
+        return true; // Temporirily assigning true for testing.
+    }
+
 }
