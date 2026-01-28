@@ -24,13 +24,10 @@ public class Library {
     }
 
     public void displayBooks() {
-        if (availableBooksByTitle.isEmpty()) {
-            System.out.println("No books in the library.");
-            return;
-        }
-
-        for (Book book : books) {
-            System.out.println("Book Id: " + book.getBookId() + ", Book Title: " + book.getTitle());
+        for (Book book : availableBooks) {
+            System.out.println(
+                "ID: " + book.getBookId() +", Title: " + book.getTitle() +", Author: " + book.getAuthor()
+            );
         }
     }
 
