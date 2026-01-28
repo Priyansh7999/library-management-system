@@ -29,6 +29,14 @@ public class Library {
         return false;
     }
 
+    public boolean isValidPersonName(String name) {
+        if (name == null)
+            return false;
+
+        name = name.trim();
+        return !name.isEmpty() && name.matches("[a-zA-Z\\s]+");
+    }
+
     public Student findStudentByMobile(String mobile) {
         for (Student student : students) {
             if (student.getMobileNumber().equals(mobile)) {

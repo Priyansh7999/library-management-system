@@ -32,6 +32,11 @@ public class Main {
 
                     System.out.print("Enter author name: ");
                     String author = scanner.nextLine();
+                    while (!library.isValidPersonName(author)) {
+                        System.out.println("Invalid author name entered. name should contain only alphabets and spaces.");
+                        System.out.print("Enter author name: ");
+                        author = scanner.nextLine();
+                    }
 
                     System.out.print("Enter number of copies: ");
                     String copies = scanner.nextLine();
@@ -50,6 +55,12 @@ public class Main {
                     if (student == null) {
                         System.out.print("Enter student name: ");
                         String studentName = scanner.nextLine();
+
+                        while(!library.isValidPersonName(studentName)) {
+                            System.out.println("Invalid student name entered. name should contain only alphabets and spaces.");
+                            System.out.print("Enter student name: ");
+                            studentName = scanner.nextLine();
+                        }
                         student = new Student(studentName, studentMobile);
                         isNewStudent = true;
                     }
