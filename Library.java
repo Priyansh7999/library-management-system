@@ -1,6 +1,8 @@
 import java.util.*;
 
 public class Library {
+    
+    Scanner scanner = new Scanner(System.in);
 
     private int totalAvailableBooks = 0;
     private List<Book> availableBooks = new ArrayList<>();
@@ -26,13 +28,33 @@ public class Library {
 
     public void returnBook(String studMobileNumber){
         // Logic for returning book
+        Map<String, List<Book>> borrowedBooksByStudentID = new HashMap<>();
         
+        // Dummy record
+        borrowedBooksByStudentID.put(
+            "STUD1",
+            new ArrayList<>(List.of(
+                new Book("1", "Harry potter", "JK Rowling"),
+                new Book("1", "Harry potter", "JK Rowling")
+            ))
+        );
+
         // verify if student member has borrowed any book -> hasUserBorrowedBook()
-        if(!hasUserBorrowedBook()){
+        if(!hasUserBorrowedBook(studMobileNumber, borrowedBooksByStudentID)){
             System.out.print("This student member has not borrowed any book.");
         } else {
-            System.out.println("Enter your choice: ");
-            // Output: “Choose a book. Enter your choice:” (Iterate borrowedBooks and print Book.name)
+            // Output: “Choose a book. Enter your choice:” (Iterate borrowedBooksByStudentID and print Book.name)
+            System.out.println("\nWhich book do you want to return:");
+
+            borrowedBooksByStudentID.forEach((studentId, books) -> {
+                for (Book book: books) {
+                    System.out.println(book.getTitle());
+                }
+            });
+
+            String bookTitle = scanner.nextLine();
+            
+
             // Input: choice number
             // returnBook()
         }
@@ -43,9 +65,26 @@ public class Library {
         // Print message "Book returned successfully"
     }
 
-    public boolean hasUserBorrowedBook(){
+    public Student findStudentByMobile(String mobile, List<Student> students) {
+        for (Student student : students) {
+            if (student.getMobileNumber().equals(mobile)) {
+                return student;
+            }
+        }
+        return null;
+    }
+    
+    public boolean hasUserBorrowedBook(String mobileNumber, Map<String, List<Book>> borrowedBooksByStudentID){
         // Logic to check if Student has borrowed book
-        return true; // Temporirily assigning true for testing.
+        List<Student> students = new ArrayList<>(); //temp variable
+        
+        Student student = findStudentByMobile(mobileNumber, students);
+
+        if(!borrowedBooksByStudentID.containsKey(student.getId())){
+           return false;
+        } else {
+            return true;
+        }
     }
 
 }
