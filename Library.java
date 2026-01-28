@@ -16,6 +16,15 @@ public class Library {
             availableBooks.add(book);
         }
     }
+    public boolean isBookAvailable(String title) {
+    for (Book book : availableBooks) {
+        if (book.getTitle().equalsIgnoreCase(title)) {
+            return true;
+        }
+    }
+    return false;
+}
+
 
     public void displayBooks() {
         for (Book book : availableBooks) {
@@ -24,5 +33,5 @@ public class Library {
             );
         }
     }
-    
+
 }
