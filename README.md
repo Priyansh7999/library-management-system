@@ -7,27 +7,29 @@ A simple command-line based Library Management System for managing books and stu
 ### Book Management
 - Add new books
   - Book name
-  - Number of total copies
-  - Number of available copies
 
 - List all books with:
   - Book name
+  - Auther name
   - Available copies
 
 ### Member Management
 - Members are students only
+  - Members have : Name, ID, Mobile Number
 
 ### Borrow Book
 - Borrow a book by providing:
-  - Book name
+  - Student Mobile Number
   - Student name
+  - Book name
 - Decreases available copies when a book is borrowed
 
 ### Borrowed Book List
 - View all borrowed books with:
-  - Book name
+  - Book 
   - Student name
-
+ ### Completed till Borrowed Book List
+ 
 ### Return Book
 - Return a book by providing:
   - Book name
