@@ -14,9 +14,11 @@ public class Main {
             System.out.println("2. Add book");
             System.out.println("3. Borrow book");
             System.out.println("4. Return book");
-            System.out.println("5. Exit");
+            System.out.println("5. Display Available Books");
+            System.out.println("6. Display Borrowed Books");
+            System.out.println("7. Exit");
 
-            System.out.print("Enter your choice(in numbers from 1 to 4): ");
+            System.out.print("Enter your choice(in numbers from 1 to 6): ");
 
             int choice = scanner.nextInt();
             scanner.nextLine();
@@ -74,10 +76,19 @@ public class Main {
 
                     break;
 
-                case 5:
+                case 5: // Display Available Books - YOUR ROLE
+                    library.displayBooks();
+                    break;
+
+                case 6: // Display Borrowed Books - YOUR ROLE
+                    library.displayBorrowedBooks();
+                    break;
+                
+                case 7:
                     System.out.println("Exiting system. Goodbye!");
                     scanner.close();
                     return;
+
 
                 default:
                     System.out.println("Invalid choice. Try again.");

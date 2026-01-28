@@ -110,9 +110,39 @@ public class Library {
             }
         }
 
-        if (returnedBook == null) {
-            System.out.println("You have not borrowed this book.");
-            return;
+    public void displayBooks() {
+    if (availableBooks.isEmpty()) {
+        System.out.println("No books available in the library.");
+        return;
+    }
+    
+    System.out.println("\nList of available books:");
+    for (int i = 0; i < availableBooks.size(); i++) {
+        Book book = availableBooks.get(i);
+        System.out.println((i + 1) + ". " + book.getTitle() + 
+                          " by " + book.getAuthor() + 
+                          " (ID: " + book.getBookId() + ")");
+    }
+    System.out.println("Total: " + availableBooks.size() + " books");
+}
+
+
+public void displayBorrowedBooks() {
+    if (borrowedBooksByStudentID.isEmpty()) {
+        System.out.println("No books are currently borrowed.");
+        return;
+    }
+    
+    System.out.println("\nLIST OF BORROWED BOOKS:");
+    int bookCount = 1;
+    
+    for (Map.Entry<String, List<Book>> entry : borrowedBooksByStudentID.entrySet()) {
+        String studentId = entry.getKey();
+        
+        for (Book book : entry.getValue()) {
+            System.out.println(bookCount + ". \"" + book.getTitle() + 
+                             "\" borrowed by Student ID: " + studentId);
+            bookCount++;
         }
 
         borrowedBooks.remove(returnedBook);
@@ -146,5 +176,9 @@ public class Library {
 
         return borrowedBooksByStudentID.containsKey(student.getId());
     }
+    
+    System.out.println("Total borrowed books: " + (bookCount - 1));
+}
+
 
 }
