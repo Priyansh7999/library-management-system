@@ -5,6 +5,7 @@ public class Library {
     private int totalAvailableBooks = 0;
     private List<Book> availableBooks = new ArrayList<>();
     private List<Student> students = new ArrayList<>();
+    private Map<String, List<Book>> borrowedBooksByStudentID = new HashMap<>();
 
 
     public void addBook(String title, String author, String availableCopies) {
@@ -36,6 +37,33 @@ public class Library {
     public void addStudent(Student student) {
         students.add(student);
     }
+    public void borrowBook(String bookName, Student student) {
+    int firstIndex = -1;
+    for (int i = 0; i < availableBooks.size(); i++) {
+        if (availableBooks.get(i).getTitle().equalsIgnoreCase(bookName)) {
+            firstIndex = i;
+            break;
+        }
+    }
+    if (firstIndex == -1) {
+        System.out.println("Book not available: " + bookName);
+        return;
+    }
+
+    Book borrowedBook = availableBooks.remove(firstIndex);
+
+    borrowedBooksByStudentID
+            .computeIfAbsent(student.getId(), id -> new ArrayList<>())
+            .add(borrowedBook);
+
+    System.out.println(
+            "Book borrowed successfully | " +
+            "Title: " + borrowedBook.getTitle() +
+            " | Book ID: " + borrowedBook.getBookId() +
+            " | Student ID: " + student.getId()
+    );
+}
+
 
 
 
