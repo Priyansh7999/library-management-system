@@ -6,21 +6,19 @@ public class Library {
     private Map<String, List<String>> availableBooksByTitle = new HashMap<>();
     private Map<String, String> borrowedBooks = new HashMap<>();
 
-    public void addBook(String id, String title, String availableCopies) {
-        // validation - does book with same name already exist
-        if (hasBookWithTitle(title)) {
-            System.out.println("The book with this title already exists");
-            return;
+    private int totalAvailableBooks = 0;
+    private List<Book> availableBooks = new ArrayList<>();
+
+    public void addBook(String title, String author, String availableCopies) {
+        int copies = Integer.parseInt(availableCopies);
+
+        for (int i = 1; i <= copies; i++) {
+            totalAvailableBooks++;
+            String bookId = title + totalAvailableBooks;
+            Book book = new Book(bookId, title.toLowerCase(), author.toLowerCase());
+            availableBooks.add(book);
         }
-
-        // Create new book object
-        Book book = new Book(id, title);
-        books.add(book);
-
-        // generate a simple key value pair such as {"Book Title": ["Id 1", "Id 2"]}
-        generateBookCopyIds(title, availableCopies);
     }
-
     public boolean hasBookWithTitle(String title) {
         return availableBooksByTitle.containsKey(title);
     }
