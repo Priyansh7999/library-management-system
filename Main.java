@@ -37,7 +37,7 @@ public class Main {
 
                     System.out.println("Book added successfully.");
                     break;
-                case 6:
+                case 3:
                     System.out.println("Exiting system. Goodbye!");
                     scanner.close();
                     return;
