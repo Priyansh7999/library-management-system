@@ -2,7 +2,7 @@ import java.util.*;
 
 public class Library {
 
-    private int totalAvailableBooks = 0;
+    private int bookIdCounter = 0;
     private List<Book> availableBooks = new ArrayList<>();
     private List<Student> students = new ArrayList<>();
     private Map<String, List<Book>> borrowedBooksByStudentID = new HashMap<>();
@@ -12,8 +12,8 @@ public class Library {
         int copies = Integer.parseInt(availableCopies);
 
         for (int i = 1; i <= copies; i++) {
-            totalAvailableBooks++;
-            String bookId = title.toLowerCase() + totalAvailableBooks;
+            bookIdCounter++;
+            String bookId = title.toLowerCase() + bookIdCounter;
             Book book = new Book(bookId, title.toLowerCase(), author.toLowerCase());
             availableBooks.add(book);
         }
