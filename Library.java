@@ -10,6 +10,9 @@ public class Library {
     private Map<String, List<Book>> borrowedBooksByStudentID = new HashMap<>();
 
     public void addBook(String title, String author, String availableCopies) {
+        availableCopies = availableCopies.trim();
+        title = title.trim();
+        author = author.trim();
         int copies = Integer.parseInt(availableCopies);
 
         for (int i = 1; i <= copies; i++) {
@@ -179,6 +182,11 @@ public class Library {
         }
 
         return borrowedBooksByStudentID.containsKey(student.getId());
+    }
+
+    public boolean isValidNumberInput(String numberInput) {
+        numberInput = numberInput.trim();
+        return numberInput != null && numberInput.matches("\\d+") && Integer.parseInt(numberInput) > 0;
     }
 
 }

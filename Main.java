@@ -40,6 +40,11 @@ public class Main {
 
                     System.out.print("Enter number of copies: ");
                     String copies = scanner.nextLine();
+                    while (!library.isValidNumberInput(copies)) {
+                        System.out.println("Invalid number of copies entered. It should be a positive integer.");
+                        System.out.print("Enter number of copies: ");
+                        copies = scanner.nextLine();
+                    }
 
                     library.addBook(title, author, copies);
 
