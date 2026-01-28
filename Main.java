@@ -12,9 +12,10 @@ public class Main {
 
             System.out.println("1. List books");
             System.out.println("2. Add book");
-            System.out.println("3. Exit");
+            System.out.println("3. Borrow book");
+            System.out.println("4. Exit");
 
-            System.out.print("Enter your choice(in numbers from 1 to 3): ");
+            System.out.print("Enter your choice(in numbers from 1 to 4): ");
 
             int choice = scanner.nextInt();
             scanner.nextLine();
@@ -37,7 +38,33 @@ public class Main {
 
                     System.out.println("Book added successfully.");
                     break;
-                case 3:
+                case 3: // Borrow book feature
+                    System.out.print("Enter student mobile: ");
+                    String studentMobile = scanner.nextLine();
+
+                    Student student = library.findStudentByMobile(studentMobile);
+                    boolean isNewStudent = false;
+
+                    if (student == null) {
+                        System.out.print("Enter student name: ");
+                        String studentName = scanner.nextLine();
+                        student = new Student(studentName, studentMobile);
+                        isNewStudent = true;
+                    }
+
+                    System.out.print("Enter book title: ");
+                    String bookTitle = scanner.nextLine();
+
+                    if (!library.isBookAvailable(bookTitle)) {
+                        System.out.println("Book not available. Borrow not possible.");
+                        break;
+                    }
+                    if (isNewStudent) {
+                        library.addStudent(student);
+                    }
+                    library.borrowBook(bookTitle, student);
+                                        break;
+                case 4:
                     System.out.println("Exiting system. Goodbye!");
                     scanner.close();
                     return;
