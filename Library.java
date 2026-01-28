@@ -4,6 +4,7 @@ public class Library {
 
     private int totalAvailableBooks = 0;
     private List<Book> availableBooks = new ArrayList<>();
+    private List<Student> students = new ArrayList<>();
 
 
     public void addBook(String title, String author, String availableCopies) {
@@ -24,6 +25,18 @@ public class Library {
     }
     return false;
 }
+    public Student findStudentByMobile(String mobile) {
+    for (Student student : students) {
+        if (student.getMobileNumber().equals(mobile)) {
+            return student;
+        }
+    }
+    return null;
+}
+
+
+
+
 
 
     public void displayBooks() {
