@@ -33,6 +33,10 @@ public class Library {
     }
     return null;
 }
+    public void addStudent(Student student) {
+        students.add(student);
+    }
+
 
 
 
