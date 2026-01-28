@@ -31,6 +31,7 @@ public class Library {
         }
         return false;
     }
+
     public boolean isValidIndiaMobile(String number) {
         // Regex allows +91, 91, or 0 prefixes, followed by 10 digits starting with 6-9
         String regex = "^(\\+91[\\-\\s]?)?[0]?(91)?[6-9]\\d{9}$";
@@ -82,6 +83,14 @@ public class Library {
                         "Title: " + borrowedBook.getTitle() +
                         " | Book ID: " + borrowedBook.getBookId() +
                         " | Student ID: " + student.getId());
+    }
+
+    public boolean isValidBookTitle(String title) {
+        if (title == null)
+            return false;
+        title = title.trim();
+        return !title.isEmpty()
+                && title.matches("(?=.*[a-zA-Z0-9])[a-zA-Z0-9\\s.,'\"!?:-]+");
     }
 
     public void returnBook(String studMobileNumber) {

@@ -29,6 +29,13 @@ public class Main {
                 case 2: // Add book feature
                     System.out.print("Enter book title: ");
                     String title = scanner.nextLine();
+                    title = title.trim();
+                    while (!library.isValidBookTitle(title)) {
+                        System.out.println("Invalid book title entered. Title should not be empty.");
+                        System.out.print("Enter book title: ");
+                        title = scanner.nextLine();
+                        title = title.trim();
+                    }
 
                     System.out.print("Enter author name: ");
                     String author = scanner.nextLine();
@@ -36,6 +43,7 @@ public class Main {
                         System.out.println("Invalid author name entered. name should contain only alphabets and spaces.");
                         System.out.print("Enter author name: ");
                         author = scanner.nextLine();
+                        author = author.trim();
                     }
 
                     System.out.print("Enter number of copies: ");
@@ -44,6 +52,7 @@ public class Main {
                         System.out.println("Invalid number of copies entered. It should be a positive integer.");
                         System.out.print("Enter number of copies: ");
                         copies = scanner.nextLine();
+                        copies = copies.trim();
                     }
 
                     library.addBook(title, author, copies);
@@ -81,6 +90,12 @@ public class Main {
                     System.out.print("Enter book title: ");
                     String bookTitle = scanner.nextLine();
                     bookTitle = bookTitle.trim();
+                    while (!library.isValidBookTitle(bookTitle)) {
+                        System.out.println("Invalid book title entered. Title should not be empty.");
+                        System.out.print("Enter book title: ");
+                        bookTitle = scanner.nextLine();
+                        bookTitle = bookTitle.trim();
+                    }
 
                     if (!library.isBookAvailable(bookTitle)) {
                         System.out.println("Book not available. Borrow not possible.");
