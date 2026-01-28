@@ -12,7 +12,7 @@ public class Main {
 
             System.out.println("1. List books");
             System.out.println("2. Add book");
-            System.out.println("3. Borrow book");
+            System.out.println("3. Exit");
 
             System.out.print("Enter your choice(in numbers from 1 to 3): ");
 
