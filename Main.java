@@ -53,18 +53,26 @@ public class Main {
                 case 3: // Borrow book feature
                     System.out.print("Enter student mobile: ");
                     String studentMobile = scanner.nextLine();
-
+                    studentMobile = studentMobile.trim();
+                    while (!library.isValidIndiaMobile(studentMobile)) {
+                        System.out.println("Invalid mobile number entered. Please enter a valid Indian mobile number.");
+                        System.out.print("Enter student mobile: ");
+                        studentMobile = scanner.nextLine();
+                        studentMobile = studentMobile.trim();
+                    }
                     Student student = library.findStudentByMobile(studentMobile);
                     boolean isNewStudent = false;
 
                     if (student == null) {
                         System.out.print("Enter student name: ");
                         String studentName = scanner.nextLine();
+                        studentName = studentName.trim();
 
                         while(!library.isValidPersonName(studentName)) {
                             System.out.println("Invalid student name entered. name should contain only alphabets and spaces.");
                             System.out.print("Enter student name: ");
                             studentName = scanner.nextLine();
+                            studentName = studentName.trim();
                         }
                         student = new Student(studentName, studentMobile);
                         isNewStudent = true;
@@ -72,6 +80,7 @@ public class Main {
 
                     System.out.print("Enter book title: ");
                     String bookTitle = scanner.nextLine();
+                    bookTitle = bookTitle.trim();
 
                     if (!library.isBookAvailable(bookTitle)) {
                         System.out.println("Book not available. Borrow not possible.");
@@ -86,7 +95,14 @@ public class Main {
                 case 4: // to return book
                     System.out.print("Enter Student Mobile Number: ");
                     String studMobileNumber = scanner.nextLine();
+                    studMobileNumber = studMobileNumber.trim();
 
+                    while (!library.isValidIndiaMobile(studMobileNumber)) {
+                        System.out.println("Invalid mobile number entered. Please enter a valid Indian mobile number.");
+                        System.out.print("Enter Student Mobile Number: ");
+                        studMobileNumber = scanner.nextLine();
+                        studMobileNumber = studMobileNumber.trim();
+                    }
                     library.returnBook(studMobileNumber);
 
                     break;

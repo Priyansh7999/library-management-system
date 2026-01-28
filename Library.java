@@ -31,6 +31,11 @@ public class Library {
         }
         return false;
     }
+    public boolean isValidIndiaMobile(String number) {
+        // Regex allows +91, 91, or 0 prefixes, followed by 10 digits starting with 6-9
+        String regex = "^(\\+91[\\-\\s]?)?[0]?(91)?[6-9]\\d{9}$";
+        return number != null && number.matches(regex);
+    }
 
     public boolean isValidPersonName(String name) {
         if (name == null)
