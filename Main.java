@@ -13,9 +13,11 @@ public class Main {
             System.out.println("1. List books");
             System.out.println("2. Add book");
             System.out.println("3. Borrow book");
-            System.out.println("4. Exit");
+            System.out.println("4. Display Available Books");
+            System.out.println("5. Display Borrowed Books");
+            System.out.println("6. Exit");
 
-            System.out.print("Enter your choice(in numbers from 1 to 4): ");
+            System.out.print("Enter your choice(in numbers from 1 to 6): ");
 
             int choice = scanner.nextInt();
             scanner.nextLine();
@@ -64,10 +66,19 @@ public class Main {
                     }
                     library.borrowBook(bookTitle, student);
                                         break;
-                case 4:
+                case 6:
                     System.out.println("Exiting system. Goodbye!");
                     scanner.close();
                     return;
+
+                case 4: // Display Available Books - YOUR ROLE
+                    library.displayBooks();
+                    break;
+
+                case 5: // Display Borrowed Books - YOUR ROLE
+                    library.displayBorrowedBooks();
+                    break;
+
 
                 default:
                     System.out.println("Invalid choice. Try again.");
