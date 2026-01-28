@@ -48,17 +48,10 @@ public class Main {
                     return;
 
                 case 4: // to return book
-                    Map<String, List<Book>> borrowedBooks = new HashMap<>();
                     System.out.print("Enter Student Mobile Number: ");
                     String studMobileNumber = scanner.nextLine();
 
-                    if(!library.hasUserBorrowedBook()){
-                        System.out.print("This student member has not borrowed any book.");
-                    } else {
-                        // Output: “Choose a book. Enter your choice:” (Iterate borrowedBooks and print Book.name)
-                        // Input: choice number
-                        // returnBook()
-                    }
+                    library.returnBook(studMobileNumber);
 
                     break;
 

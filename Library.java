@@ -24,11 +24,19 @@ public class Library {
         }
     }
 
-    public void returnBook(){
+    public void returnBook(String studMobileNumber){
         // Logic for returning book
         
         // verify if student member has borrowed any book -> hasUserBorrowedBook()
-
+        if(!hasUserBorrowedBook()){
+            System.out.print("This student member has not borrowed any book.");
+        } else {
+            System.out.println("Enter your choice: ");
+            // Output: “Choose a book. Enter your choice:” (Iterate borrowedBooks and print Book.name)
+            // Input: choice number
+            // returnBook()
+        }
+        
         // Remove book from Borrowed books -> removeBorrowedBook()
         // Add book in available books -> addBookInAvailableBooks()
 
