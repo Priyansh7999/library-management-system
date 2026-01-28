@@ -57,7 +57,7 @@ public class Main {
 
                     if (!library.isBookAvailable(bookTitle)) {
                         System.out.println("Book not available. Borrow not possible.");
-                        return;
+                        break;
                     }
                     if (isNewStudent) {
                         library.addStudent(student);
