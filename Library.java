@@ -10,6 +10,9 @@ public class Library {
     private Map<String, List<Book>> borrowedBooksByStudentID = new HashMap<>();
 
     public void addBook(String title, String author, String availableCopies) {
+        availableCopies = availableCopies.trim();
+        title = title.trim();
+        author = author.trim();
         int copies = Integer.parseInt(availableCopies);
 
         for (int i = 1; i <= copies; i++) {
@@ -27,6 +30,20 @@ public class Library {
             }
         }
         return false;
+    }
+
+    public boolean isValidIndiaMobile(String number) {
+        // Regex allows +91, 91, or 0 prefixes, followed by 10 digits starting with 6-9
+        String regex = "^(\\+91[\\-\\s]?)?[0]?(91)?[6-9]\\d{9}$";
+        return number != null && number.matches(regex);
+    }
+
+    public boolean isValidPersonName(String name) {
+        if (name == null)
+            return false;
+
+        name = name.trim();
+        return !name.isEmpty() && name.matches("[a-zA-Z\\s]+");
     }
 
     public Student findStudentByMobile(String mobile) {
@@ -66,6 +83,14 @@ public class Library {
                         "Title: " + borrowedBook.getTitle() +
                         " | Book ID: " + borrowedBook.getBookId() +
                         " | Student ID: " + student.getId());
+    }
+
+    public boolean isValidBookTitle(String title) {
+        if (title == null)
+            return false;
+        title = title.trim();
+        return !title.isEmpty()
+                && title.matches("(?=.*[a-zA-Z0-9])[a-zA-Z0-9\\s.,'\"!?:-]+");
     }
 
     public void returnBook(String studMobileNumber) {
@@ -171,6 +196,11 @@ public class Library {
         }
 
         return borrowedBooksByStudentID.containsKey(student.getId());
+    }
+
+    public boolean isValidNumberInput(String numberInput) {
+        numberInput = numberInput.trim();
+        return numberInput != null && numberInput.matches("\\d+") && Integer.parseInt(numberInput) > 0;
     }
 
 }

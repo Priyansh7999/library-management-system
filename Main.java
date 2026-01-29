@@ -19,9 +19,13 @@ public class Main {
 
             System.out.print("Enter your choice(in numbers from 1 to 6): ");
 
-            int choice = scanner.nextInt();
-            scanner.nextLine();
-            switch (choice) {
+            String choice = scanner.nextLine();
+            choice = choice.trim();
+            if(!choice.matches("[1-6]") ){
+                System.out.println("Invalid choice. Try again.");
+                continue;
+            }
+            switch (Integer.parseInt(choice)) {
                 case 1: // to display books
                     library.displayBooks();
                     break;
@@ -29,12 +33,32 @@ public class Main {
                 case 2: // Add book feature
                     System.out.print("Enter book title: ");
                     String title = scanner.nextLine();
+                    title = title.trim();
+                    while (!library.isValidBookTitle(title)) {
+                        System.out.println("Invalid book title entered. Title should not be empty.");
+                        System.out.print("Enter book title: ");
+                        title = scanner.nextLine();
+                        title = title.trim();
+                    }
 
                     System.out.print("Enter author name: ");
                     String author = scanner.nextLine();
+                    author = author.trim();
+                    while (!library.isValidPersonName(author)) {
+                        System.out.println("Invalid author name entered. name should contain only alphabets and spaces.");
+                        System.out.print("Enter author name: ");
+                        author = scanner.nextLine();
+                        author = author.trim();
+                    }
 
                     System.out.print("Enter number of copies: ");
                     String copies = scanner.nextLine();
+                    while (!library.isValidNumberInput(copies)) {
+                        System.out.println("Invalid number of copies entered. It should be a positive integer.");
+                        System.out.print("Enter number of copies: ");
+                        copies = scanner.nextLine();
+                        copies = copies.trim();
+                    }
 
                     library.addBook(title, author, copies);
 
@@ -43,19 +67,40 @@ public class Main {
                 case 3: // Borrow book feature
                     System.out.print("Enter student mobile: ");
                     String studentMobile = scanner.nextLine();
-
+                    studentMobile = studentMobile.trim();
+                    while (!library.isValidIndiaMobile(studentMobile)) {
+                        System.out.println("Invalid mobile number entered. Please enter a valid Indian mobile number.");
+                        System.out.print("Enter student mobile: ");
+                        studentMobile = scanner.nextLine();
+                        studentMobile = studentMobile.trim();
+                    }
                     Student student = library.findStudentByMobile(studentMobile);
                     boolean isNewStudent = false;
 
                     if (student == null) {
                         System.out.print("Enter student name: ");
                         String studentName = scanner.nextLine();
+                        studentName = studentName.trim();
+
+                        while(!library.isValidPersonName(studentName)) {
+                            System.out.println("Invalid student name entered. name should contain only alphabets and spaces.");
+                            System.out.print("Enter student name: ");
+                            studentName = scanner.nextLine();
+                            studentName = studentName.trim();
+                        }
                         student = new Student(studentName, studentMobile);
                         isNewStudent = true;
                     }
 
                     System.out.print("Enter book title: ");
                     String bookTitle = scanner.nextLine();
+                    bookTitle = bookTitle.trim();
+                    while (!library.isValidBookTitle(bookTitle)) {
+                        System.out.println("Invalid book title entered. Title should not be empty.");
+                        System.out.print("Enter book title: ");
+                        bookTitle = scanner.nextLine();
+                        bookTitle = bookTitle.trim();
+                    }
 
                     if (!library.isBookAvailable(bookTitle)) {
                         System.out.println("Book not available. Borrow not possible.");
@@ -70,7 +115,14 @@ public class Main {
                 case 4: // to return book
                     System.out.print("Enter Student Mobile Number: ");
                     String studMobileNumber = scanner.nextLine();
+                    studMobileNumber = studMobileNumber.trim();
 
+                    while (!library.isValidIndiaMobile(studMobileNumber)) {
+                        System.out.println("Invalid mobile number entered. Please enter a valid Indian mobile number.");
+                        System.out.print("Enter Student Mobile Number: ");
+                        studMobileNumber = scanner.nextLine();
+                        studMobileNumber = studMobileNumber.trim();
+                    }
                     library.returnBook(studMobileNumber);
 
                     break;
