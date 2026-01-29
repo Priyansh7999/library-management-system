@@ -19,9 +19,13 @@ public class Main {
 
             System.out.print("Enter your choice(in numbers from 1 to 6): ");
 
-            int choice = scanner.nextInt();
-            scanner.nextLine();
-            switch (choice) {
+            String choice = scanner.nextLine();
+            choice = choice.trim();
+            if(!choice.matches("[1-6]") ){
+                System.out.println("Invalid choice. Try again.");
+                continue;
+            }
+            switch (Integer.parseInt(choice)) {
                 case 1: // to display books
                     library.displayBooks();
                     break;
@@ -39,6 +43,7 @@ public class Main {
 
                     System.out.print("Enter author name: ");
                     String author = scanner.nextLine();
+                    author = author.trim();
                     while (!library.isValidPersonName(author)) {
                         System.out.println("Invalid author name entered. name should contain only alphabets and spaces.");
                         System.out.print("Enter author name: ");
